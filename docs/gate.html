@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Flame Division Academy — Access Gate</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #05070b;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      color: #f5f5f5;
+    }
+    .gate {
+      width: 100%;
+      max-width: 420px;
+      padding: 32px 24px;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #1c2230, #05070b 70%);
+      border: 1px solid #2a2f3a;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.75);
+      text-align: center;
+    }
+    h1 {
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    p {
+      font-size: 0.85rem;
+      color: #b4bcc7;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.7rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid #384152;
+      background: #0b1020;
+      color: #f5f5f5;
+      margin-bottom: 0.85rem;
+      outline: none;
+    }
+    button {
+      width: 100%;
+      padding: 0.75rem 0.9rem;
+      border-radius: 999px;
+      border: none;
+      background: #d9af4f;
+      color: #05070b;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .error {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: #f97373;
+      min-height: 1rem;
+    }
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #80889a;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+  <div class="gate">
+    <h1>FLAME DIVISION GATE</h1>
+    <p>Enter the access code provided by Flame Division Academy to continue.</p>
+
+    <form id="gate-form">
+      <input
+        id="access-code"
+        type="password"
+        autocomplete="off"
+        placeholder="Enter access code"
+      />
+      <button type="submit">Unlock</button>
+      <div id="error" class="error"></div>
+    </form>
+
+    <footer>Local-only · Dual Operator Framework</footer>
+  </div>
+
+  <script>
+    (function () {
+      const ACCESS_TOKEN = "FLAME_DUAL_L1";      // 🔑 set your code here
+      const STORAGE_KEY = "flame_dual_l1_access";
+
+      const form = document.getElementById("gate-form");
+      const input = document.getElementById("access-code");
+      const errorEl = document.getElementById("error");
+
+      function setError(msg) {
+        errorEl.textContent = msg || "";
+      }
+
+      form.addEventListener("submit", function (evt) {
+        evt.preventDefault();
+        setError("");
+
+        const value = (input.value || "").trim();
+        if (!value) {
+          setError("Enter the access code provided by Flame Division Academy.");
+          input.focus();
+          return;
+        }
+
+        if (value !== ACCESS_TOKEN) {
+          setError("Access code not recognized. Check with Flame Division if needed.");
+          input.select();
+          return;
+        }
+
+        try {
+          sessionStorage.setItem(STORAGE_KEY, ACCESS_TOKEN);
+        } catch (err) {
+          // if storage fails, access lasts until reload
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const target = params.get("target") || "index.html";
+        window.location.href = decodeURIComponent(target);
+      });
+    })();
+  </script>
+</body>
+</html>
