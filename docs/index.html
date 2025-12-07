@@ -1,75 +1,71 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Flame Division Academy — Dual Operator Certification</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8">
+  <title>Flame Division Academy — Dual Operator Track</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      background: #05070b;
+      color: #f5f5f5;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Helvetica, Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .hub {
+      max-width: 520px;
+      padding: 40px;
+      border: 1px solid #2a2f3a;
+      border-radius: 16px;
+      background: radial-gradient(circle at top left, #1c2230, #05070b 70%);
+    }
+    h1 {
+      letter-spacing: 0.22em;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+    p {
+      color: #b4bcc7;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+    a {
+      display: block;
+      margin: 0.75rem 0;
+      padding: 0.75rem 1rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 600;
+      background: #0d1117;
+      border: 1px solid #d9af4f;
+      color: #f7d37b;
+    }
+    a:hover {
+      background: #111827;
+    }
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #8a93a4;
+      letter-spacing: 0.12em;
+    }
+  </style>
 </head>
 <body>
-  <div class="apo-page">
-    <header class="apo-header">
-      <div class="apo-brand">
-        <div class="apo-mark">FDA</div>
-        <div>
-          <h1>Dual Operator Certification Framework</h1>
-          <p>AI Workflow Operator · Kubernetes Workflow Operator</p>
-        </div>
-      </div>
-      <div class="apo-header-actions">
-        <span class="apo-chip">
-          PHASE II · Operator Track Directory
-        </span>
-      </div>
-    </header>
+  <div class="hub">
+    <h1>FLAME DIVISION ACADEMY</h1>
+    <p>Dual Operator Certification — Phase II</p>
 
-    <main class="apo-main">
-      <!-- LEFT COLUMN -->
-      <section class="apo-column">
-        <section class="apo-card">
-          <h2>AI Workflow Operator (AWO)</h2>
-          <p class="apo-muted small">
-            Level 1 focuses on <strong>spec, prompting, execution, and reflection</strong>.
-            You learn to drive GPT as a junior engineer using only clear instructions and patchwork thinking.
-          </p>
-          <ul class="apo-list small apo-muted">
-            <li>Structured task briefs</li>
-            <li>Single-shot prompt locking</li>
-            <li>Local attempt history</li>
-            <li>Instructor review channel</li>
-          </ul>
+    <a href="awo-level1.html">Enter AI Workflow Operator · Level 1</a>
+    <a href="kwo-level1.html">Enter Kubernetes Workflow Operator · Level 1</a>
 
-          <a href="awo-level1.html" class="apo-btn primary full" style="text-align:center; margin-top:1rem;">
-            Enter AWO Level 1 Dojo
-          </a>
-        </section>
-      </section>
-
-      <!-- RIGHT COLUMN -->
-      <section class="apo-column">
-        <section class="apo-card">
-          <h2>Kubernetes Workflow Operator (KWO)</h2>
-          <p class="apo-muted small">
-            Level 1 measures <strong>cluster reasoning</strong> — explaining how services,
-            pods, deployments, and failures fit together in human language.
-          </p>
-          <ul class="apo-list small apo-muted">
-            <li>Plain-language cluster scenarios</li>
-            <li>Locked explanations (no YAML flex)</li>
-            <li>Risk & failure awareness</li>
-            <li>Local log + certification request</li>
-          </ul>
-
-          <a href="kwo-level1.html" class="apo-btn primary full" style="text-align:center; margin-top:1rem;">
-            Enter KWO Level 1 Dojo
-          </a>
-        </section>
-      </section>
-    </main>
-
-    <footer class="apo-footer">
-      <span>Flame Division Academy · Dual Operator Certification Framework</span>
-      <span>Local-only tools · Instructor-reviewed certification</span>
+    <footer>
+      Local-only · Instructor reviewed · No sandbox theatrics
     </footer>
   </div>
 </body>
