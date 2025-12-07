@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>AWS Workflow Operator — Level 1: System Reasoning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="apo-page">
+    <!-- HEADER -->
+    <header class="apo-header">
+      <div class="apo-brand">
+        <div class="apo-mark">AWO</div>
+        <div>
+          <h1>AWS Workflow Operator — Level 1</h1>
+          <p>System Reasoning · Flame Division Academy</p>
+        </div>
+      </div>
+      <div class="apo-header-actions">
+        <button id="btn-tts-toggle" class="apo-btn ghost small">
+          🔊 TTS: ON
+        </button>
+        <span id="session-state" class="apo-chip">
+          STATE: Scenario loaded · Explanation unlocked
+        </span>
+      </div>
+    </header>
+
+    <!-- MAIN GRID -->
+    <main class="apo-main">
+      <!-- COLUMN 1 — SCENARIO -->
+      <section class="apo-column">
+        <section class="apo-card">
+          <h2>1. Read the scenario</h2>
+          <p class="apo-muted small">
+            Level 1 measures how clearly you can <strong>explain an AWS system in plain language</strong>.
+            No console clicks. No diagrams. Just thinking.
+          </p>
+
+          <div class="apo-brief-block">
+            <div class="apo-brief-header">
+              <h3>Scenario — Small Production App</h3>
+              <button id="btn-play-brief" class="apo-btn ghost small">
+                ▶ Hear scenario
+              </button>
+            </div>
+            <p id="task-brief" class="apo-muted">
+              You are responsible for a small production web application running on AWS. It has:
+            </p>
+            <ul id="task-criteria" class="apo-list small">
+              <li>A public-facing web frontend</li>
+              <li>An application layer (API or app server)</li>
+              <li>Data storage for user data</li>
+              <li>Basic security and network isolation</li>
+            </ul>
+            <p class="apo-muted small" style="margin-top:0.5rem;">
+              Your goal is to explain, in calm language, how you would structure this on AWS and
+              where the main risks live. <strong>No service-naming flex required.</strong>
+            </p>
+          </div>
+        </section>
+
+        <section class="apo-card small">
+          <h3>What Level 1 is actually testing</h3>
+          <ul class="apo-list small apo-muted">
+            <li>Can you explain AWS without hiding behind jargon?</li>
+            <li>Do you understand who can break what (IAM and access)?</li>
+            <li>Can you see the blast radius of a bad decision?</li>
+            <li>Do you think ethically about permissions and data?</li>
+          </ul>
+        </section>
+      </section>
+
+      <!-- COLUMN 2 — EXPLANATION -->
+      <section class="apo-column">
+        <section class="apo-card">
+          <h2>2. Write your system explanation</h2>
+          <p class="apo-muted small">
+            Explain the system as if you’re talking to a non-technical executive who still has to sign off
+            on the risk. Avoid code and console steps. Focus on <strong>structure, access, and safety.</strong>
+          </p>
+
+          <label class="apo-label" for="explanation-input">
+            AWS system explanation
+          </label>
+          <textarea
+            id="explanation-input"
+            rows="12"
+            placeholder="Example: 'We place the web app in a private network (VPC), expose only a load balancer to the internet, restrict admin access by IAM roles, and keep user data in a managed database service with backups and encryption at rest. If anything breaks, here is what can be impacted and why.'"
+          ></textarea>
+
+          <div class="apo-checklist">
+            <p class="apo-label small">Before you lock, confirm you have:</p>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-iam" />
+              <span>I described who can access what (IAM, roles, or clear access rules).</span>
+            </label>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-network" />
+              <span>I explained basic network boundaries (public vs private, or similar idea).</span>
+            </label>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-data" />
+              <span>I mentioned how user data is stored and protected.</span>
+            </label>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-risk" />
+              <span>I called out at least one risk or blast radius if things go wrong.</span>
+            </label>
+          </div>
+
+          <button id="btn-lock-explanation" class="apo-btn primary full">
+            ✅ Lock Explanation & Copy to Clipboard
+          </button>
+
+          <p id="explanation-status" class="apo-status small apo-muted">
+            Explanation not locked yet.
+          </p>
+        </section>
+      </section>
+
+      <!-- COLUMN 3 — LOG + NOTIFY -->
+      <section class="apo-column">
+        <section class="apo-card">
+          <h2>3. Log your Level 1 attempt</h2>
+          <p class="apo-muted small">
+            After you’ve written and locked your explanation, record the outcome here.
+            This log is for <strong>you and your instructor</strong>, not social media.
+          </p>
+
+          <label class="apo-label" for="result-notes">
+            Result snapshot (summary)
+          </label>
+          <textarea
+            id="result-notes"
+            rows="4"
+            placeholder="Example: 'Clear explanation with VPC, IAM roles, and encrypted database. Still not fully confident about logging and monitoring story.'"
+          ></textarea>
+
+          <div class="apo-selfcheck">
+            <p class="apo-label small">Self-check (honest, not theatrical)</p>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-clarity" />
+              <span>Someone non-technical could follow my explanation.</span>
+            </label>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-coverage" />
+              <span>I covered access, network, and data protection in some way.</span>
+            </label>
+            <label class="apo-check">
+              <input type="checkbox" id="chk-risk-aware" />
+              <span>I acknowledged at least one real risk and how it might be contained.</span>
+            </label>
+          </div>
+
+          <label class="apo-label" for="iteration-count">
+            How many drafts did you need?
+          </label>
+          <select id="iteration-count">
+            <option value="">Select…</option>
+            <option value="1">1 — Nailed it on the first pass</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4-5">4–5</option>
+            <option value="6-plus">6+ (I was wrestling with it)</option>
+          </select>
+
+          <label class="apo-label" for="reflection">
+            Short reflection (where it actually got hard)
+          </label>
+          <textarea
+            id="reflection"
+            rows="4"
+            placeholder="Example: I struggled to talk about IAM without listing services. Had to slow down and focus on who has access instead of which AWS product does it."
+          ></textarea>
+
+          <button id="btn-submit-attempt" class="apo-btn primary full">
+            Submit Level 1 Attempt (Local Log)
+          </button>
+
+          <p id="attempt-status" class="apo-status small">
+            No attempts logged yet.
+          </p>
+
+          <!-- CERTIFICATION REVIEW -->
+          <div class="apo-cert-block">
+            <hr class="apo-divider" />
+            <h3>Certification Review</h3>
+            <p class="apo-muted small">
+              When you believe Level 1 is complete, notify the instructor for review.
+              Certification is issued only after manual validation.
+            </p>
+
+            <button
+              id="btn-notify-instructor"
+              class="apo-btn ghost full"
+              disabled
+            >
+              📩 Notify Instructor for Certification Review
+            </button>
+
+            <p id="cert-status" class="apo-status small apo-muted">
+              Certification request not sent.
+            </p>
+          </div>
+        </section>
+
+        <section class="apo-card small">
+          <div class="apo-card-header">
+            <h3>Attempt history (this browser)</h3>
+            <button id="btn-copy-log" class="apo-btn ghost small">
+              📋 Copy log
+            </button>
+          </div>
+          <p class="apo-muted small">
+            This is your AWS reasoning trail. Instructors use this to see
+            how you actually think about systems and risk, not just what you memorize.
+          </p>
+          <ul id="attempt-list" class="apo-attempts">
+            <li class="apo-muted small">No attempts yet.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <footer class="apo-footer">
+      <span>Flame Division Academy · AWS Workflow Operator · Level 1</span>
+      <span>Local-only · No backend · Real systems thinking practice</span>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      const TTS = {
+        enabled: true,
+        synth: "speechSynthesis" in window ? window.speechSynthesis : null,
+        utterance: null,
+      };
+
+      function speak(text) {
+        if (!TTS.enabled || !TTS.synth || !text) return;
+        try {
+          if (TTS.utterance) {
+            TTS.synth.cancel();
+          }
+          const u = new SpeechSynthesisUtterance(text);
+          u.rate = 1;
+          u.pitch = 1;
+          TTS.utterance = u;
+          TTS.synth.speak(u);
+        } catch (e) {
+          // fail silently
+        }
+      }
+
+      const btnTtsToggle = document.getElementById("btn-tts-toggle");
+      const btnPlayBrief = document.getElementById("btn-play-brief");
+      const briefEl = document.getElementById("task-brief");
+      const statusChip = document.getElementById("session-state");
+
+      if (btnTtsToggle) {
+        btnTtsToggle.addEventListener("click", () => {
+          TTS.enabled = !TTS.enabled;
+          btnTtsToggle.textContent = TTS.enabled ? "🔊 TTS: ON" : "🔇 TTS: OFF";
+        });
+      }
+
+      if (btnPlayBrief && briefEl) {
+        btnPlayBrief.addEventListener("click", () => {
+          speak(
+            "You are responsible for a small production web application on A W S. Your job is to explain how you structure it, who can access what, and where the main risks live."
+          );
+        });
+      }
+
+      // EXPLANATION LOCK
+      const explanationInput = document.getElementById("explanation-input");
+      const explanationStatus = document.getElementById("explanation-status");
+      const btnLockExplanation = document.getElementById("btn-lock-explanation");
+
+      const chkIam = document.getElementById("chk-iam");
+      const chkNetwork = document.getElementById("chk-network");
+      const chkData = document.getElementById("chk-data");
+      const chkRisk = document.getElementById("chk-risk");
+
+      function setExplanationStatus(msg, kind) {
+        if (!explanationStatus) return;
+        explanationStatus.textContent = msg;
+        explanationStatus.classList.remove("good", "bad");
+        if (kind) explanationStatus.classList.add(kind);
+      }
+
+      if (btnLockExplanation && explanationInput) {
+        btnLockExplanation.addEventListener("click", async () => {
+          const text = (explanationInput.value || "").trim();
+          if (!text) {
+            setExplanationStatus("Write your explanation before locking.", "bad");
+            speak("Write your explanation before you lock it.");
+            return;
+          }
+
+          if (!chkIam.checked || !chkNetwork.checked || !chkData.checked || !chkRisk.checked) {
+            setExplanationStatus(
+              "Check all four boxes before locking. You must cover access, network, data, and risk.",
+              "bad"
+            );
+            speak(
+              "You must confirm that you covered access, network, data protection, and risk before locking."
+            );
+            return;
+          }
+
+          explanationInput.readOnly = true;
+          explanationInput.classList.add("locked");
+
+          try {
+            await navigator.clipboard.writeText(text);
+            setExplanationStatus("Explanation locked and copied to clipboard.", "good");
+            speak("Explanation locked and copied. Use this as your reasoning baseline.");
+          } catch (e) {
+            setExplanationStatus(
+              "Explanation locked. Copy it manually if needed.",
+              "good"
+            );
+            speak("Explanation locked. Copy it manually if needed.");
+          }
+
+          if (statusChip) {
+            statusChip.textContent = "STATE: Level 1 in progress · Explanation locked";
+          }
+        });
+      }
+
+      // ATTEMPT LOGGING
+      const resultNotesEl = document.getElementById("result-notes");
+      const chkClarity = document.getElementById("chk-clarity");
+      const chkCoverage = document.getElementById("chk-coverage");
+      const chkRiskAware = document.getElementById("chk-risk-aware");
+      const iterationSelect = document.getElementById("iteration-count");
+      const reflectionEl = document.getElementById("reflection");
+      const btnSubmitAttempt = document.getElementById("btn-submit-attempt");
+      const attemptStatus = document.getElementById("attempt-status");
+      const attemptList = document.getElementById("attempt-list");
+      const btnCopyLog = document.getElementById("btn-copy-log");
+      const notifyBtn = document.getElementById("btn-notify-instructor");
+      const certStatus = document.getElementById("cert-status");
+
+      const STORAGE_KEY = "fda_awo_l1_attempts";
+      const PASS_FLAG_KEY = "fda_awo_l1_passed";
+
+      let attempts = [];
+
+      function loadAttempts() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          attempts = raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          attempts = [];
+        }
+      }
+
+      function saveAttempts() {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(attempts));
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      function setAttemptStatus(msg, kind) {
+        if (!attemptStatus) return;
+        attemptStatus.textContent = msg;
+        attemptStatus.classList.remove("good", "bad");
+        if (kind) attemptStatus.classList.add(kind);
+      }
+
+      function renderAttempts() {
+        if (!attemptList) return;
+        if (!attempts.length) {
+          attemptList.innerHTML = '<li class="apo-muted small">No attempts yet.</li>';
+          return;
+        }
+
+        const items = attempts
+          .slice()
+          .reverse()
+          .map((a) => {
+            const date = new Date(a.timestamp);
+            const time = date.toLocaleString();
+            const statusLabel = a.passed ? "PASS" : "NEEDS REVIEW";
+            const statusClass = a.passed ? "good" : "bad";
+            const checks = [];
+            if (a.checkClarity) checks.push("Clarity");
+            if (a.checkCoverage) checks.push("Coverage");
+            if (a.checkRiskAware) checks.push("Risk-aware");
+            const checksLabel = checks.length ? checks.join(" · ") : "No self-checks";
+
+            return `
+              <li>
+                <strong>AWS Workflow Operator — Level 1</strong>
+                <div class="small apo-muted">${time}</div>
+                <div class="small apo-status ${statusClass}">Status: ${statusLabel}</div>
+                <div class="small apo-muted">Drafts: ${a.iterations || "?"}</div>
+                <div class="small">${checksLabel}</div>
+                <div class="small apo-muted">${a.resultNotes || ""}</div>
+                <div class="small apo-muted">${a.reflection || ""}</div>
+              </li>
+            `;
+          })
+          .join("");
+
+        attemptList.innerHTML = items;
+      }
+
+      if (btnSubmitAttempt) {
+        btnSubmitAttempt.addEventListener("click", () => {
+          const explanationLocked = explanationInput && explanationInput.readOnly;
+          if (!explanationLocked) {
+            setAttemptStatus(
+              "Lock your explanation first. Level 1 is about committed reasoning, not endless drafting.",
+              "bad"
+            );
+            speak("Lock your explanation before logging the attempt.");
+            return;
+          }
+
+          const resultNotes = (resultNotesEl.value || "").trim();
+          const reflection = (reflectionEl.value || "").trim();
+          const iterations = iterationSelect.value || "";
+
+          if (!resultNotes) {
+            setAttemptStatus("Add a brief result summary before submitting.", "bad");
+            return;
+          }
+
+          if (!iterations) {
+            setAttemptStatus("Select how many drafts it took.", "bad");
+            return;
+          }
+
+          const passed =
+            !!chkClarity.checked &&
+            !!chkCoverage.checked &&
+            !!chkRiskAware.checked &&
+            reflection.length >= 30;
+
+          const attempt = {
+            level: "AWO-L1",
+            resultNotes,
+            checkClarity: !!chkClarity.checked,
+            checkCoverage: !!chkCoverage.checked,
+            checkRiskAware: !!chkRiskAware.checked,
+            iterations,
+            reflection,
+            passed,
+            timestamp: Date.now(),
+          };
+
+          attempts.push(attempt);
+          saveAttempts();
+          renderAttempts();
+
+          if (passed) {
+            try {
+              localStorage.setItem(PASS_FLAG_KEY, "true");
+            } catch (e) {}
+            setAttemptStatus(
+              "Attempt logged and marked as PASS for Level 1 (pending instructor review).",
+              "good"
+            );
+            speak("Attempt recorded and marked as pass. An instructor will still review before certification.");
+            if (notifyBtn) {
+              notifyBtn.disabled = false;
+              notifyBtn.classList.remove("ghost");
+              notifyBtn.classList.add("primary");
+            }
+          } else {
+            setAttemptStatus(
+              "Attempt logged, but flagged for review. Strengthen your reasoning and try again.",
+              "bad"
+            );
+            speak("Attempt recorded, but not auto-passed. Strengthen your coverage and reflection before trying again.");
+          }
+        });
+      }
+
+      if (btnCopyLog) {
+        btnCopyLog.addEventListener("click", async () => {
+          if (!attempts.length) {
+            setAttemptStatus("No attempts to copy yet.", "bad");
+            return;
+          }
+          const lines = attempts.map((a) => {
+            const date = new Date(a.timestamp).toISOString();
+            return [
+              `Level: ${a.level}`,
+              `Timestamp: ${date}`,
+              `Drafts: ${a.iterations}`,
+              `PASS: ${a.passed}`,
+              `Clarity: ${a.checkClarity}`,
+              `Coverage: ${a.checkCoverage}`,
+              `Risk-aware: ${a.checkRiskAware}`,
+              `Result: ${a.resultNotes}`,
+              `Reflection: ${a.reflection}`,
+              `---`,
+            ].join("\n");
+          });
+          const text = lines.join("\n");
+          try {
+            await navigator.clipboard.writeText(text);
+            setAttemptStatus("Attempt log copied to clipboard.", "good");
+          } catch (e) {
+            setAttemptStatus("Unable to copy automatically. Select and copy manually.", "bad");
+          }
+        });
+      }
+
+      // CERTIFICATION NOTIFY
+      if (notifyBtn) {
+        notifyBtn.addEventListener("click", async () => {
+          const latest = attempts[attempts.length - 1];
+          const explanationText = (explanationInput.value || "").trim();
+
+          const payload =
+`FLAME DIVISION ACADEMY — CERTIFICATION REVIEW REQUEST
+
+Track:
+AWS Workflow Operator — Level 1 (System Reasoning)
+
+Latest Attempt:
+PASS: ${latest?.passed ? "true" : "false"}
+Drafts: ${latest?.iterations || "N/A"}
+Timestamp: ${latest ? new Date(latest.timestamp).toISOString() : "N/A"}
+
+Result Summary:
+${latest?.resultNotes || "N/A"}
+
+Reflection:
+${latest?.reflection || "N/A"}
+
+Locked Explanation:
+${explanationText || "N/A"}
+
+Submitted from:
+Local AWO-L1 Dojo`;
+
+          try {
+            await navigator.clipboard.writeText(payload);
+            if (certStatus) {
+              certStatus.textContent =
+                "✅ Certification request copied. Send this to your instructor.";
+              certStatus.classList.remove("bad");
+              certStatus.classList.add("good");
+            }
+            speak("Certification request copied. Send it to your instructor for review.");
+          } catch (e) {
+            if (certStatus) {
+              certStatus.textContent =
+                "⚠ Unable to copy automatically. Please manually share your log.";
+              certStatus.classList.remove("good");
+              certStatus.classList.add("bad");
+            }
+          }
+        });
+      }
+
+      // init
+      loadAttempts();
+      renderAttempts();
+    })();
+  </script>
+
+  <!-- Ninja gate (shared with Flame Division stack) -->
+  <script>
+    (function () {
+      const ACCESS_TOKEN = "FLAME_FDA_V1"; // must match gate.html
+      const STORAGE_KEY = "flame_fda_access";
+
+      let current;
+      try {
+        current = sessionStorage.getItem(STORAGE_KEY);
+      } catch (err) {
+        current = null;
+      }
+
+      if (current !== ACCESS_TOKEN) {
+        var pathParts = window.location.pathname.split("/");
+        var fileName = pathParts[pathParts.length - 1] || "awo-level1.html";
+        var query = window.location.search || "";
+        var target = encodeURIComponent(fileName + query);
+        window.location.href = "gate.html?target=" + target;
+      }
+    })();
+  </script>
+</body>
+</html>
