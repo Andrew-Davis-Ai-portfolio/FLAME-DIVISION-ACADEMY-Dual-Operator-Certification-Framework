@@ -593,5 +593,30 @@ Local AWO-L1 Dojo`;
       }
     })();
   </script>
+
+  <script>
+  (function () {
+    const ACCESS_TOKEN = "FLAME_DUAL_L1";    // 🔑 must match gate.html
+    const STORAGE_KEY = "flame_dual_l1_access";
+
+    let current;
+    try {
+      current = sessionStorage.getItem(STORAGE_KEY);
+    } catch (err) {
+      current = null;
+    }
+
+    if (current !== ACCESS_TOKEN) {
+      // figure out which file we’re on (e.g. awo-level1.html)
+      var pathParts = window.location.pathname.split("/");
+      var fileName = pathParts[pathParts.length - 1] || "index.html";
+      var query = window.location.search || "";
+      var target = encodeURIComponent(fileName + query);
+
+      // gate is in the same /docs/ folder
+      window.location.href = "gate.html?target=" + target;
+    }
+  })();
+</script>
 </body>
 </html>
