@@ -7,7 +7,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="apo-page">
+  <div class="apo-page" data-track="k8s">
+    <!-- DUAL TRACK STATUS HUD -->
+    <div class="apo-dual-status">
+      <div class="track-pill" id="track-aws-pill">
+        <span class="track-label">AWO L1</span>
+        <span class="track-state" id="track-aws-state">Not attempted</span>
+      </div>
+      <div class="track-pill" id="track-kwo-pill">
+        <span class="track-label">KWO L1</span>
+        <span class="track-state" id="track-kwo-state">Not attempted</span>
+      </div>
+    </div>
+
     <!-- HEADER -->
     <header class="apo-header">
       <div class="apo-brand">
@@ -230,6 +242,7 @@
     </footer>
   </div>
 
+  <!-- Core logic -->
   <script>
     (function () {
       const TTS = {
@@ -288,6 +301,29 @@
         explanationStatus.textContent = msg;
         explanationStatus.classList.remove("good", "bad");
         if (kind) explanationStatus.classList.add(kind);
+      }
+
+      function updateDualStatus() {
+        const awsPassed = localStorage.getItem("fda_awo_l1_passed") === "true";
+        const kwoPassed = localStorage.getItem("fda_kwo_l1_passed") === "true";
+
+        const awsPill = document.getElementById("track-aws-pill");
+        const awsState = document.getElementById("track-aws-state");
+        const kwoPill = document.getElementById("track-kwo-pill");
+        const kwoState = document.getElementById("track-kwo-state");
+
+        if (awsPill && awsState) {
+          if (awsPassed) {
+            awsState.textContent = "PASS (pending review)";
+          } else {
+            awsState.textContent = "Not completed";
+          }
+          awsPill.classList.toggle("pill-pass", awsPassed);
+        }
+        if (kwoPill && kwoState) {
+          kwoState.textContent = kwoPassed ? "PASS (pending review)" : "In progress";
+          kwoPill.classList.toggle("pill-pass", kwoPassed);
+        }
       }
 
       if (btnLockExplanation && explanationInput) {
@@ -481,6 +517,8 @@
             );
             speak("Attempt recorded, but not auto-passed. Strengthen your coverage and reflection before trying again.");
           }
+
+          updateDualStatus();
         });
       }
 
@@ -567,31 +605,32 @@ Local KWO-L1 Dojo`;
       // init
       loadAttempts();
       renderAttempts();
+      updateDualStatus();
     })();
   </script>
 
   <!-- Ninja gate -->
- <script>
-  (function () {
-    const ACCESS_TOKEN = "FLAME_DUAL_L1";    // 🔑 must match gate.html
-    const STORAGE_KEY = "flame_dual_l1_access";
+  <script>
+    (function () {
+      const ACCESS_TOKEN = "FLAME_DUAL_L1";    // 🔑 must match gate.html
+      const STORAGE_KEY = "flame_dual_l1_access";
 
-    let current;
-    try {
-      current = sessionStorage.getItem(STORAGE_KEY);
-    } catch (err) {
-      current = null;
-    }
+      let current;
+      try {
+        current = sessionStorage.getItem(STORAGE_KEY);
+      } catch (err) {
+        current = null;
+      }
 
-    if (current !== ACCESS_TOKEN) {
-      var pathParts = window.location.pathname.split("/");
-      var fileName = pathParts[pathParts.length - 1] || "awo-level1.html";
-      var query = window.location.search || "";
-      var target = encodeURIComponent(fileName + query);
+      if (current !== ACCESS_TOKEN) {
+        var pathParts = window.location.pathname.split("/");
+        var fileName = pathParts[pathParts.length - 1] || "kwo-level1.html";
+        var query = window.location.search || "";
+        var target = encodeURIComponent(fileName + query);
 
-      window.location.href = "gate.html?target=" + target;
-    }
-  })();
-</script>
+        window.location.href = "gate.html?target=" + target;
+      }
+    })();
+  </script>
 </body>
 </html>
