@@ -44,3 +44,107 @@
 .apo-header {
   margin-top: 0.25rem;
 }
+
+/* ---------------------------------------------- */
+/* 🔥 FLAME DIVISION ACADEMY — VOID REALM THEME   */
+/* ---------------------------------------------- */
+
+body {
+  background: #000000 !important;
+  color: #e2e2e2;
+  font-family: system-ui, sans-serif;
+}
+
+.apo-page {
+  background: transparent !important;
+}
+
+.apo-header {
+  background: linear-gradient(to right, #000000, #0d0d0d);
+  border-bottom: 1px solid #222;
+}
+
+.apo-card {
+  background: #0d0d0d;
+  border: 1px solid #1f1f1f;
+  box-shadow: 0 0 12px rgba(255, 165, 0, 0.08);
+  border-radius: 10px;
+}
+
+.apo-card.small {
+  background: #0b0b0b;
+}
+
+.apo-btn.primary {
+  background: #ff8c00;
+  color: #000;
+  border: none;
+  box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
+}
+
+.apo-btn.primary:hover {
+  background: #ffaa33;
+  box-shadow: 0 0 15px rgba(255, 170, 51, 0.6);
+}
+
+.apo-btn.ghost {
+  background: transparent;
+  border: 1px solid #444;
+  color: #e2e2e2;
+}
+
+.apo-btn.ghost:hover {
+  border-color: #ff8c00;
+  color: #ff8c00;
+}
+
+.apo-chip {
+  background: #111;
+  border: 1px solid #333;
+  color: #ffa64d;
+}
+
+.apo-divider {
+  border-color: #333 !important;
+}
+
+.apo-muted {
+  color: #b5b5b5 !important;
+}
+
+textarea,
+select,
+input[type="text"] {
+  background: #0b0b0b;
+  color: #e5e5e5;
+  border: 1px solid #333;
+}
+
+textarea.locked {
+  background: #1a1a1a !important;
+  border-color: #ff8c00 !important;
+  color: #ffc78d !important;
+  box-shadow: inset 0 0 10px rgba(255, 140, 0, 0.3);
+}
+
+.apo-status.good {
+  color: #16ff8d !important;
+}
+
+.apo-status.bad {
+  color: #ff4d4d !important;
+}
+
+/* Scrollbar (desktop only) */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+}
+::-webkit-scrollbar-thumb {
+  background: #333;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
